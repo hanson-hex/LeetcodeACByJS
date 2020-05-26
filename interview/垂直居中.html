@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .column {
+    float: left;
+    position: relative;
+    background: red;
+    width: 19.5%;
+    height: 300px;
+    border-right: 2px dotted green;
+  }
+  #wrapper {
+    display: table;
+    height: 100%;
+  }
+  #cell {
+    display: table-cell;
+    vertical-align: middle
+  }
+  #content2 {
+    position: absolute;
+    height: 100px;
+    top: 50%;
+    overflow: auto;
+    margin-top: -50px;
+  }
+  #floater {
+    height: 50%;
+    margin-bottom: -60px;
+  }
+  #content3 {
+    height: 120px;
+    /* clear: both; */
+    /* position: relative; */
+  }
+  #content4 {
+    height: 100px;
+    line-height: 100px;
+  }
+  #content5 {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 100px;
+    margin: auto;
+  }
+  .next {
+    position: relative;
+    height: 600px;
+  }
+  #content6 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #aaa;
+    padding: 60px;
+  }
+</style>
+<body>
+  <div>
+  <div class="next">
+    <div id="content6">
+    abc
+    </div>
+  </div>
+  <div class="column">
+    <div id="wrapper">
+      <div id="cell">
+        <div class="content">
+          Content goes here
+          Content goes here
+          Content goes here
+          Content goes here
+          Content goes here
+          Content goes here
+          Content goes here
+          Content goes here
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div id="content2">
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+      content2 
+    </div>
+  </div>
+  <div class="column">
+    <div id="floater">
+    </div>
+      <div id="content3">
+        content3
+        content3
+        content3
+        content3
+        content3
+        content3
+      </div>
+  </div>
+  <div class="column">
+    <div id="content4">
+      content4
+    </div>
+  </div>
+  <div class="column">
+    <div id="content5">
+      content5
+    </div>
+  </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="list">
+    <li id="item" class="li-item">1</li>
+    <li class="li-item xixi">2</li>
+    <li class="li-item">3</li>
+    <li class="li-item">4</li>
+  </ul>
+ <script>
+   function delegateEvent (interfaceEle, selector, type, fn) {
+    if (interfaceEle.addEventListener) {
+      interfaceEle.addEventListener(type, eventFn)
+    } else {
+      interfaceEle.attachEvent('on' + type, eventFn)
+    }
+    function eventFn(e) {
+      var e = e || window.event
+      var target = e.target || e.srcElement
+      if (matchSelector(target, selector)) {
+        if (fn) {
+          fn.call(target, e)
+        }
+      }
+    }
+   }
+   function matchSelector (ele, selector) {
+    console.log('ele:', ele)
+    console.log('ele #', ele.id)
+    console.log(ele.className)
+    if (selector.charAt(0) === '#') {
+      return ele.id === selector.slice(1)
+    }
+    if (selector.charAt(0) === '.') {
+      return (ele.className).indexOf(selector.slice(1)) !== -1
+    }
+    return ele.tagName.toLowerCase() === selector.toLowerCase()
+   }
+   var div = document.getElementById('list')
+   console.log('div', div)
+   delegateEvent(div, '.xixi', 'click', function () {
+     alert('hello ')
+   })
+ </script> 
+</body>
+</html>

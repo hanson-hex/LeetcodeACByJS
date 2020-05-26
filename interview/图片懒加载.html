@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  img {
+    display: block;
+    margin-bottom: 50px;
+    width: 400px;
+    height: 400px;
+  }
+</style>
+<body>
+  <div id="app">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa7kaed2hpj30sg0l9q54.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa7kaed2hpj30sg0l9q54.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa7kaed2hpj30sg0l9q54.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img src="default.jpg" data-src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+  </div>
+</body>
+</html>
+<script type="application/javascript">
+  function bindEvent (elem, type, selector, fn) {
+    if (fn == null) {
+      fn = selector
+      selector = null
+    }
+    elem.addEventListener(type, function(e) {
+      var target
+      if (selector) {
+        target = e.target
+        if (target.matches(selector)) {
+          fn.call(target, e)
+        }
+      } else {
+        fn(e)
+      }
+    })
+  }
+  window.onload = function () {
+    var oDiv1 = document.getElementById('app')
+    bindEvent(oDiv1, 'click', 'img', function(e) {
+      console.log(this)
+    })
+  }
+  var num = document.getElementsByTagName('img') .length
+  var imgs = document.getElementsByTagName('img')
+  var n = 0
+  lazyload()
+  window.onscroll = lazyload
+  function lazyload () {
+    var seeHeight = document.documentElement.clientHeight  // 可见区域的高度
+    console.log('seeHeight:', seeHeight)
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop // 滚动条距离顶部的高度
+    for (var i = n; i < num; i++) {
+      if (imgs[i].offsetTop < seeHeight + scrollTop) {
+        if (imgs[i].getAttribute('src') == 'default.jpg') {
+          imgs[i].src = imgs[i].getAttribute('data-src')
+        }
+        n = i + 1
+      }
+    }
+  }
+</script>

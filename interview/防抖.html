@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  img {
+    display: block;
+    margin-bottom: 50px;
+    width: 400px;
+    height: 400px;
+  }
+</style>
+<body>
+  <div id="app">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa7kaed2hpj30sg0l9q54.jpg" alt="">
+ <img  src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa7kaed2hpj30sg0l9q54.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa7kaed2hpj30sg0l9q54.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+ <img  src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg" alt="">
+  </div>
+</body>
+<script>
+  window.onload = function () {
+  }
+  debounce = function (fn, wait, immediate) {
+    var timer = null
+    return function () {
+      var context = this
+      var args = arguments
+      clearTimeout(timer)
+      var callNow = immediate && !timer
+      timer = setTimeout(function() {
+        timer = null
+        if (!immediate) {
+          fn.call(context, args)
+        }
+      }, wait)
+      if (callNow) fn.call(context, args)
+    }
+  }
+  function throttle (fn, wait) {
+    var timer = null
+    return function () {
+      var context = this
+      var args = arguments
+      if (!timer) {
+        timer = setTimeout(function() {
+          fn.call(context, args)
+          timer = null
+        }, wait)
+      }
+    }
+  }
+  function throttle1(fn, wait) {
+    var timer = null
+    var startTime = +new Date()
+    return function () {
+      var context = this
+      var args = arguments
+      var endTime = +new Date()
+      clearTimeout(timer)
+      if (endTime - startTime > wait) {
+        fn.call(context, args)
+        startTime = endTime
+      } else {
+        timer = setTimeout(function() {
+          fn.call(context, args)
+        }, wait)
+      }
+    }
+  }
+  function log () {
+    console.log('11111111')
+  }
+  // window.addEventListener('resize', throttle(log, 500))
+  window.addEventListener('scroll', throttle1(log, 1000))
+
+</script>
+</html>

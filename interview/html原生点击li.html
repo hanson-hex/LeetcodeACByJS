@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li class="clickbox">123455</li>
+    <li class="clickbox">dfdas</li>
+    <li class="clickbox">dfad</li>
+    <li class="clickbox">fda</li>
+    <li class="clickbox">adfga</li>
+  </ul>
+</body>
+<script type="application/javascript">
+  window.onload = function() {
+    function iteratoryFactory(item) {
+      var onClick = function(e) {
+        item.innerHTML = item.innerHTML.split('').reverse().join("")
+      }
+      return onClick
+    }
+    clickBoxs = document.querySelectorAll('.clickbox')
+    for (var i = 0;i < clickBoxs.length; i++) {
+      clickBoxs[i].onclick = iteratoryFactory(clickBoxs[i])
+    }
+  }
+</script>
+</html>
